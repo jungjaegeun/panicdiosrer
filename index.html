@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공황장애 관리 앱</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="content"></div>
+        <div id="panic-guide" class="hidden">
+            <h2>공황 발작 대처 가이드</h2>
+            <div id="guide-content"></div>
+            <div id="progress-bar">
+                <div id="progress"></div>
+            </div>
+            <button id="next-step">다음 단계</button>
+            <button id="close-guide">닫기</button>
+        <audio id="meditation-audio" loop>
+                <source src="명상음악.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+        </audio>
+
+            
+        </div>
+        <nav class="bottom-nav">
+            <button onclick="changePage('home')">홈</button>
+            <button onclick="changePage('panicButton')">공황 버튼</button>
+            <button onclick="changePage('breathe')">호흡</button>
+            <button onclick="changePage('tasks')">과제</button>
+            <button onclick="changePage('progress')">진행 상황</button>
+        </nav>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
