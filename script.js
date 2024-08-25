@@ -397,3 +397,118 @@ document.addEventListener('DOMContentLoaded', initApp);
 // 초기 페이지 렌더링
 renderPage();
 
+let diaryEntries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+
+function renderDiary() {
+    const content = document.getElementById('content');
+    content.innerHTML = `
+        <h1>당신의 일기와 개인 문서</h1>
+        <div id="diary-entries"></div>
+        <button onclick="showNewEntryForm()" class="button">새 일기 작성</button>
+    `;
+    renderDiaryEntries();
+}
+
+function renderDiaryEntries() {
+    const entriesContainer = document.getElementById('diary-entries');
+    entriesContainer.innerHTML = '';
+    diaryEntries.sort((a, b) => new Date(b.date) - new Date(a.date));
+    diaryEntries.forEach(entry => {
+        const entryElement = document.createElement('div');
+        entryElement.className = 'diary-entry';
+        entryElement.innerHTML = `
+            <h2>${formatDate(entry.date)}</h2>
+            <p>${entry.emotion} ${getEmotionEmoji(entry.emotion)}</p>
+            <p>${entry.content}</p>
+            ${entry.image ? `<img src="${entry.image}" alt="일기 이미지" class="diary-image">` : ''}
+        `;
+        entriesContainer.appendChild(entryElement);
+    });
+}
+
+function showNewEntryForm() {
+    const content = document.getElementById('content');
+    content.innerHTML = `
+        <h1>새 일기 작성</h1>
+        <form id="new-entry-form">
+            <input type="date" id="entry-date" required>
+            <select id="entry-emotion" required>
+                <option value="">감정 선택</option>
+                <option value="행복">행복</option>
+                <option value="슬픔">슬픔</option>
+                <option value="화남">화남</option>
+                <option value="불안">불안</option>
+                <option value="평온">평온</option>
+            </select>
+            <textarea id="entry-content" placeholder="오늘의 일기를 작성하세요..." required></textarea>
+            <input type="file" id="entry-image" accept="image/*">
+            <button type="submit" class="button">저장</button>
+        </form>
+    `;
+    document.getElementById('new-entry-form').addEventListener('submit', saveNewEntry);
+}
+
+function saveNewEntry(event) {
+    event.preventDefault();
+    const date = document.getElementById('entry-date').value;
+    const emotion = document.getElementById('entry-emotion').value;
+    const content = document.getElementById('entry-content').value;
+    const imageFile = document.getElementById('entry-image').files[0];
+
+    if (imageFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const newEntry = { date, emotion, content, image: e.target.result };
+            diaryEntries.push(newEntry);
+            localStorage.setItem('diaryEntries', JSON.stringify(diaryEntries));
+            renderDiary();
+        };
+        reader.readAsDataURL(imageFile);
+    } else {
+        const newEntry = { date, emotion, content };
+        diaryEntries.push(newEntry);
+        localStorage.setItem('diaryEntries', JSON.stringify(diaryEntries));
+        renderDiary();
+    }
+}
+
+function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('ko-KR', options);
+}
+
+function getEmotionEmoji(emotion) {
+    const emojis = {
+        '행복': '😊',
+        '슬픔': '😢',
+        '화남': '😠',
+        '불안': '😰',
+        '평온': '😌'
+    };
+    return emojis[emotion] || '';
+}
+
+// changePage 함수에 새로운 페이지 추가
+function changePage(page) {
+    currentPage = page;
+    switch(page) {
+        case 'home':
+            renderHome();
+            break;
+        case 'panicButton':
+            renderPanicButton();
+            break;
+        case 'breathe':
+            renderBreathe();
+            break;
+        case 'diary':
+            renderDiary();
+            break;
+        case 'tasks':
+            renderTasks();
+            break;
+        case 'progress':
+            renderProgress();
+            break;
+    }
+}
