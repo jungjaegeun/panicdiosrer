@@ -1,36 +1,8 @@
-:root {
-  --primary-color: #7986CB;
-  --secondary-color: #64B5F6;
-  --background-color: #F5F5F5;
-  --card-background: #FFFFFF;
-  --text-color: #333333;
-  --button-color: #E8EAF6;
-  --button-text-color: #3F51B5;
-  --panic-button-color: #EF5350;
-  --breathe-circle-color: #81C784;
-  --progress-bar-color: #4CAF50;
-}
-
-[data-theme="dark"] {
-  --primary-color: #5C6BC0;
-  --secondary-color: #42A5F5;
-  --background-color: #212121;
-  --card-background: #424242;
-  --text-color: #FFFFFF;
-  --button-color: #3F51B5;
-  --button-text-color: #FFFFFF;
-  --panic-button-color: #E53935;
-  --breathe-circle-color: #66BB6A;
-  --progress-bar-color: #43A047;
-}
-
 body {
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  transition: all 0.3s ease;
+  background-color: #f0f0f0;
 }
 
 #app {
@@ -50,81 +22,169 @@ body {
 .bottom-nav {
   display: flex;
   justify-content: space-around;
-  padding: 15px;
-  background-color: var(--card-background);
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  padding: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
 }
 
 .bottom-nav button {
   background-color: transparent;
   border: none;
-  font-size: 16px;
-  color: var(--text-color);
+  font-size: 14px;
+  color: #333;
   cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.bottom-nav button:hover {
-  color: var(--primary-color);
 }
 
 .card {
-  background-color: var(--card-background);
-  border-radius: 12px;
-  padding: 25px;
-  margin: 15px 0;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   width: 100%;
   max-width: 500px;
-  transition: all 0.3s ease;
 }
 
 .button {
-  background-color: var(--button-color);
+  background-color: #e6e6fa;
   border: none;
-  padding: 12px 25px;
-  margin: 8px;
-  border-radius: 25px;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  color: var(--button-text-color);
-  transition: all 0.3s ease;
-}
-
-.button:hover {
-  background-color: var(--primary-color);
-  color: #FFFFFF;
+  color: #333;
 }
 
 .input {
   width: 100%;
-  padding: 12px;
-  margin: 12px 0;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* 감정 캘린더 관련 스타일 */
+#emotion-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.emotion {
+  font-size: 24px;
+  margin: 0 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.day {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  font-size: 14px;
+  position: relative;
+}
+
+.day .emotion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.bottom-nav button {
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.card {
+  background-color: #ffffff;
   border-radius: 8px;
-  border: 1px solid var(--secondary-color);
-  background-color: var(--card-background);
-  color: var(--text-color);
-  transition: all 0.3s ease;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.button {
+  background-color: #e6e6fa;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
 .panic-button {
-  background-color: var(--panic-button-color);
+  background-color: #ff6b6b;
   color: white;
   font-size: 24px;
   padding: 20px 40px;
   border-radius: 50px;
-  transition: all 0.3s ease;
-}
-
-.panic-button:hover {
-  transform: scale(1.05);
 }
 
 .breathe-circle {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: var(--breathe-circle-color);
+  background-color: #4ecdc4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,22 +202,21 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid var(--secondary-color);
-  transition: all 0.3s ease;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .progress-bar {
   width: 100%;
   height: 20px;
-  background-color: var(--button-color);
+  background-color: #e0e0e0;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background-color: var(--progress-bar-color);
+  background-color: #4ecdc4;
   transition: width 0.5s ease-in-out;
 }
 
@@ -165,14 +224,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .emotion-row {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .emotion {
@@ -180,42 +239,33 @@ body {
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: transform 0.3s ease;
-}
-
-.emotion:hover {
-  transform: scale(1.1);
 }
 
 .emotion img {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
 }
+
 
 #calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-  margin-top: 25px;
+  gap: 5px;
+  margin-top: 20px;
 }
 
 .day {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid #ddd;
   border-radius: 50%;
-  font-size: 14px;
+  font-size: 12px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.day:hover {
-  transform: scale(1.1);
 }
 
 .day .emotion-img {
@@ -223,8 +273,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -233,14 +283,13 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--card-background);
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
   max-width: 80%;
   max-height: 80%;
   overflow-y: auto;
-  transition: all 0.3s ease;
 }
 
 #panic-guide.hidden {
@@ -248,7 +297,7 @@ body {
 }
 
 #guide-content {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 #guide-content p {
@@ -256,22 +305,17 @@ body {
 }
 
 #next-step, #close-guide {
-  padding: 12px 25px;
-  margin: 8px;
-  background-color: var(--primary-color);
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 #close-guide {
-  background-color: var(--panic-button-color);
-}
-
-#next-step:hover, #close-guide:hover {
-  transform: scale(1.05);
+  background-color: #f44336;
 }
 
 @keyframes fadeIn {
@@ -286,31 +330,66 @@ body {
 #progress-bar {
   width: 100%;
   height: 20px;
-  background-color: var(--button-color);
+  background-color: #f0f0f0;
   border-radius: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   overflow: hidden;
 }
 
 #progress {
   width: 0%;
   height: 100%;
-  background-color: var(--progress-bar-color);
+  background-color: #4CAF50;
   transition: width 0.5s;
 }
 
 #toggleAudio {
-  margin-top: 25px;
-  padding: 12px 25px;
-  background-color: var(--primary-color);
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 #toggleAudio:hover {
-  background-color: var(--secondary-color);
-  transform: scale(1.05);
+  background-color: #45a049;
+}
+.diary-entry {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.diary-entry h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.diary-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#new-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#new-entry-form input,
+#new-entry-form select,
+#new-entry-form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#new-entry-form textarea {
+  height: 100px;
 }
